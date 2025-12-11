@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ReleCloud - {{ destination }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ destination }}</h1>
+
+<!-- Valoración Media -->
+{% if total_reviews > 0 %}
+<div class="mb-3">
+    <h4>
+        <span class="text-warning">★</span> {{ average_rating|floatformat:1 }} 
+        <small class="text-muted">({{ total_reviews }} review{{ total_reviews|pluralize }})</small>
+    </h4>
+</div>
+{% endif %}
+
+<p>
+{{ destination.description }}
+</p>
+
+<!-- Botón de Compra -->
+{% if user.is_authenticated %}
+    <div class="mb-4">
+        <form method="post" action="{% url 'purchase_destination' destination.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success btn-lg">
+                🛒 {% if has_purchased %}Comprar de nuevo{% else %}Comprar este destino{% endif %}
+            </button>
+        </form>
+    </div>
+{% else %}
+<div class="alert alert-info mb-4">
+    <a href="/admin/login/?next={{ request.path }}">Inicia sesión</a> para comprar este destino
+</div>
+{% endif %}
+
+<!-- Formulario de Review (solo para usuarios que han comprado) -->
+{% if user.is_authenticated and has_purchased and not user_review %}
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>Escribe una opinión</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" action="{% url 'create_destination_review' destination.id %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="rating" class="form-label">Valoración</label>
+                <select class="form-select" id="rating" name="rating" required>
+                    <option value="">Selecciona una valoración...</option>
+                    <option value="5">★★★★★ (5 estrellas)</option>
+                    <option value="4">★★★★☆ (4 estrellas)</option>
+                    <option value="3">★★★☆☆ (3 estrellas)</option>
+                    <option value="2">★★☆☆☆ (2 estrellas)</option>
+                    <option value="1">★☆☆☆☆ (1 estrella)</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Comentario (opcional)</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar opinión</button>
+        </form>
+    </div>
+</div>
+{% elif user.is_authenticated and user_review %}
+<div class="alert alert-info mb-4">
+    📝 Ya has valorado este destino. Cómpralo de nuevo para dejar otra opinión.
+</div>
+{% elif user.is_authenticated %}
+<div class="alert alert-info">
+    <p>Debes comprar este destino para dejar una opinión.</p>
+</div>
+{% endif %}
+
+<!-- Lista de Reviews -->
+{% if reviews %}
+<div class="mt-4">
+    <h3>Customer Reviews</h3>
+    {% for review in reviews %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">
+                {{ review.user.username }}
+                <span class="text-warning">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+                    {% endfor %}
+                </span>
+            </h5>
+            <p class="card-text">{{ review.comment }}</p>
+            <p class="text-muted small">{{ review.created_at|date:"F d, Y" }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<p>You can explore {{ destination }} on the following cruises:</p>
+<ul class="list-group">
+    {% for cruise in destination.cruises.all %}
+    <a class="list-group-item list-group-item-action" href="{% url 'cruise_detail' cruise.id %}">{{ cruise }}</a>
+    {% endfor %}
+</ul>
+{% endblock content %}

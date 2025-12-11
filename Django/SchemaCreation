@@ -1,0 +1,178 @@
+-- Script para crear el esquema completo de Django en PostgreSQL
+-- Este script recrea todas las tablas necesarias del proyecto Django
+
+-- Crear tabla de migraciones de Django
+CREATE TABLE IF NOT EXISTS django_migrations (
+    id SERIAL PRIMARY KEY,
+    app VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    applied TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+-- Crear tabla de tipos de contenido de Django
+CREATE TABLE IF NOT EXISTS django_content_type (
+    id SERIAL PRIMARY KEY,
+    app_label VARCHAR(100) NOT NULL,
+    model VARCHAR(100) NOT NULL,
+    UNIQUE(app_label, model)
+);
+
+-- Crear tabla de permisos de autenticación
+CREATE TABLE IF NOT EXISTS auth_permission (
+    id SERIAL PRIMARY KEY,
+    content_type_id INTEGER NOT NULL,
+    codename VARCHAR(100) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    UNIQUE(content_type_id, codename)
+);
+
+-- Crear tabla de grupos de autenticación
+CREATE TABLE IF NOT EXISTS auth_group (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL UNIQUE
+);
+
+-- Crear tabla de permisos de grupos
+CREATE TABLE IF NOT EXISTS auth_group_permissions (
+    id SERIAL PRIMARY KEY,
+    group_id INTEGER NOT NULL,
+    permission_id INTEGER NOT NULL,
+    UNIQUE(group_id, permission_id)
+);
+
+-- Crear tabla de usuarios
+CREATE TABLE IF NOT EXISTS auth_user (
+    id SERIAL PRIMARY KEY,
+    password VARCHAR(128) NOT NULL,
+    last_login TIMESTAMP WITH TIME ZONE,
+    is_superuser BOOLEAN NOT NULL,
+    username VARCHAR(150) NOT NULL UNIQUE,
+    last_name VARCHAR(150) NOT NULL,
+    email VARCHAR(254) NOT NULL,
+    is_staff BOOLEAN NOT NULL,
+    is_active BOOLEAN NOT NULL,
+    date_joined TIMESTAMP WITH TIME ZONE NOT NULL,
+    first_name VARCHAR(150) NOT NULL
+);
+
+-- Crear tabla de grupos de usuarios
+CREATE TABLE IF NOT EXISTS auth_user_groups (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    group_id INTEGER NOT NULL,
+    UNIQUE(user_id, group_id)
+);
+
+-- Crear tabla de permisos de usuarios
+CREATE TABLE IF NOT EXISTS auth_user_user_permissions (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    permission_id INTEGER NOT NULL,
+    UNIQUE(user_id, permission_id)
+);
+
+-- Crear tabla de logs de administración
+CREATE TABLE IF NOT EXISTS django_admin_log (
+    id SERIAL PRIMARY KEY,
+    object_id TEXT,
+    object_repr VARCHAR(200) NOT NULL,
+    action_flag SMALLINT NOT NULL CHECK (action_flag >= 0),
+    change_message TEXT NOT NULL,
+    content_type_id INTEGER,
+    user_id INTEGER NOT NULL,
+    action_time TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+-- Crear tabla de sesiones
+CREATE TABLE IF NOT EXISTS django_session (
+    session_key VARCHAR(40) PRIMARY KEY,
+    session_data TEXT NOT NULL,
+    expire_date TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+-- Crear tablas específicas de la aplicación relecloud
+
+-- Tabla de destinos
+CREATE TABLE IF NOT EXISTS relecloud_destination (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    slug VARCHAR(50) NOT NULL
+);
+
+-- Tabla de cruceros
+CREATE TABLE IF NOT EXISTS relecloud_cruise (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    description TEXT NOT NULL
+);
+
+-- Tabla intermedia para many-to-many entre cruceros y destinos
+CREATE TABLE IF NOT EXISTS relecloud_cruise_destinations (
+    id SERIAL PRIMARY KEY,
+    cruise_id BIGINT NOT NULL,
+    destination_id BIGINT NOT NULL,
+    UNIQUE(cruise_id, destination_id)
+);
+
+-- Tabla de solicitudes de información
+CREATE TABLE IF NOT EXISTS relecloud_inforequest (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(254) NOT NULL,
+    notes TEXT NOT NULL,
+    cruise_id BIGINT NOT NULL
+);
+
+-- Crear índices
+CREATE INDEX IF NOT EXISTS django_admin_log_content_type_id_idx ON django_admin_log(content_type_id);
+CREATE INDEX IF NOT EXISTS django_admin_log_user_id_idx ON django_admin_log(user_id);
+CREATE INDEX IF NOT EXISTS auth_permission_content_type_id_idx ON auth_permission(content_type_id);
+CREATE INDEX IF NOT EXISTS auth_group_permissions_group_id_idx ON auth_group_permissions(group_id);
+CREATE INDEX IF NOT EXISTS auth_group_permissions_permission_id_idx ON auth_group_permissions(permission_id);
+CREATE INDEX IF NOT EXISTS auth_user_groups_user_id_idx ON auth_user_groups(user_id);
+CREATE INDEX IF NOT EXISTS auth_user_groups_group_id_idx ON auth_user_groups(group_id);
+CREATE INDEX IF NOT EXISTS auth_user_user_permissions_user_id_idx ON auth_user_user_permissions(user_id);
+CREATE INDEX IF NOT EXISTS auth_user_user_permissions_permission_id_idx ON auth_user_user_permissions(permission_id);
+CREATE INDEX IF NOT EXISTS django_session_expire_date_idx ON django_session(expire_date);
+CREATE INDEX IF NOT EXISTS relecloud_destination_slug_idx ON relecloud_destination(slug);
+CREATE INDEX IF NOT EXISTS relecloud_cruise_destinations_cruise_id_idx ON relecloud_cruise_destinations(cruise_id);
+CREATE INDEX IF NOT EXISTS relecloud_cruise_destinations_destination_id_idx ON relecloud_cruise_destinations(destination_id);
+CREATE INDEX IF NOT EXISTS relecloud_inforequest_cruise_id_idx ON relecloud_inforequest(cruise_id);
+
+-- Crear las restricciones de clave foránea
+ALTER TABLE auth_permission ADD CONSTRAINT auth_permission_content_type_id_fkey 
+    FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE auth_group_permissions ADD CONSTRAINT auth_group_permissions_group_id_fkey 
+    FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE auth_group_permissions ADD CONSTRAINT auth_group_permissions_permission_id_fkey 
+    FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE auth_user_groups ADD CONSTRAINT auth_user_groups_user_id_fkey 
+    FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE auth_user_groups ADD CONSTRAINT auth_user_groups_group_id_fkey 
+    FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE auth_user_user_permissions ADD CONSTRAINT auth_user_user_permissions_user_id_fkey 
+    FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE auth_user_user_permissions ADD CONSTRAINT auth_user_user_permissions_permission_id_fkey 
+    FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE django_admin_log ADD CONSTRAINT django_admin_log_content_type_id_fkey 
+    FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE django_admin_log ADD CONSTRAINT django_admin_log_user_id_fkey 
+    FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE relecloud_cruise_destinations ADD CONSTRAINT relecloud_cruise_destinations_cruise_id_fkey 
+    FOREIGN KEY (cruise_id) REFERENCES relecloud_cruise(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE relecloud_cruise_destinations ADD CONSTRAINT relecloud_cruise_destinations_destination_id_fkey 
+    FOREIGN KEY (destination_id) REFERENCES relecloud_destination(id) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE relecloud_inforequest ADD CONSTRAINT relecloud_inforequest_cruise_id_fkey 
+    FOREIGN KEY (cruise_id) REFERENCES relecloud_cruise(id) DEFERRABLE INITIALLY DEFERRED;
