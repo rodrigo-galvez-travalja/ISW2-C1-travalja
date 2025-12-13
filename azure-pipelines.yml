@@ -33,8 +33,9 @@ steps:
     DJANGO_SECRET_KEY: $(DJANGO_SECRET_KEY)
     DEBUG: 'False'
 
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'TuServiceConnectionAzure'
-    appName: 'NombreDeTuAppService'
-    package: '$(System.DefaultWorkingDirectory)'
+# Descomentar y configurar cuando tengas la service connection de Azure lista
+# - task: AzureWebApp@1
+#   inputs:
+#     azureSubscription: 'TuServiceConnectionAzure'
+#     appName: 'NombreDeTuAppService'
+#     package: '$(System.DefaultWorkingDirectory)/Django'
