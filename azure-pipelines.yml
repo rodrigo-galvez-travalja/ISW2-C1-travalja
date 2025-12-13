@@ -31,7 +31,7 @@ steps:
     DEBUG: 'False'
 
 - task: AzureWebApp@1
-  inputs:
+  inputs: 
     azureSubscription: 'Azure-Travalja'
     appName: 'RelecloudMaster3'
     package: '$(System.DefaultWorkingDirectory)/Django'
