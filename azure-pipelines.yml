@@ -30,9 +30,8 @@ steps:
     DJANGO_SECRET_KEY: $(DJANGO_SECRET_KEY)
     DEBUG: 'False'
 
-# Descomentar y configurar cuando tengas la service connection de Azure lista
-# - task: AzureWebApp@1
-#   inputs:
-#     azureSubscription: 'TuServiceConnectionAzure'
-#     appName: 'NombreDeTuAppService'
-#     package: '$(System.DefaultWorkingDirectory)/Django'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure-Travalja'
+    appName: 'RelecloudMaster3'
+    package: '$(System.DefaultWorkingDirectory)/Django'
