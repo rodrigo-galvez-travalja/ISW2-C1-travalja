@@ -3,7 +3,7 @@
 # Script de inicio para Azure App Service
 # Ejecuta migraciones, carga datos iniciales y luego inicia gunicorn
 
-echo "Ejecutando migraciones..."
+echo "Ejecutando migraciones..." 
 python manage.py migrate --noinput
 
 echo "Cargando datos iniciales..."
