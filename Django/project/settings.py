@@ -45,7 +45,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Si hay proxy/terminación SSL en Azure
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
+ 
 # Cookies seguras en prod
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
