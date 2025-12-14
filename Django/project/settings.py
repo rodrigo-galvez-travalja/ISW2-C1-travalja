@@ -32,14 +32,14 @@ if allowed_hosts_env:
     ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(',') if host.strip()]
 else:
     ALLOWED_HOSTS = [
-        'relecloudmaster4-gfc3b4b7eu6gvhb.francecentral-01.azurewebsites.net',
+        'relecloudmaster4-gfc3b4b7eug6cyhb.francecentral-01.azurewebsites.net',
         'localhost',
         '127.0.0.1',
     ]
 
 # Orígenes permitidos para verificar CSRF (con esquema https://)
 CSRF_TRUSTED_ORIGINS = [
-    "https://relecloudmaster4-gfc3b4b7eu6gvhb.francecentral-01.azurewebsites.net",
+    "https://relecloudmaster4-gfc3b4b7eug6cyhb.francecentral-01.azurewebsites.net",
     "https://*.azurewebsites.net",
 ]
 
