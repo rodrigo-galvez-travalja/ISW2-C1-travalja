@@ -1,405 +1,405 @@
 [
-{
-  "model": "relecloud.destination",
-  "pk": 2,
-  "fields": {
-    "name": "Ceres",
-    "description": "Ceres",
-    "slug": "Ceres"
+  {
+    "model": "relecloud.destination",
+    "pk": 2,
+    "fields": {
+      "name": "Ceres",
+      "description": "Ceres",
+      "slug": "Ceres"
+    }
+  },
+  {
+    "model": "relecloud.destination",
+    "pk": 3,
+    "fields": {
+      "name": "Hygea",
+      "description": "Hygea",
+      "slug": "Hygea"
+    }
+  },
+  {
+    "model": "relecloud.destination",
+    "pk": 4,
+    "fields": {
+      "name": "Sea of tranquility",
+      "description": "Sea of tranquility",
+      "slug": "Seaoftranquility"
+    }
+  },
+  {
+    "model": "relecloud.destination",
+    "pk": 5,
+    "fields": {
+      "name": "Ocean of storms",
+      "description": "Ocean of storms",
+      "slug": "Oceanofstorms"
+    }
+  },
+  {
+    "model": "relecloud.destination",
+    "pk": 6,
+    "fields": {
+      "name": "Fra Mauro",
+      "description": "Fra Mauro",
+      "slug": "FraMauro"
+    }
+  },
+  {
+    "model": "relecloud.destination",
+    "pk": 7,
+    "fields": {
+      "name": "Hadley Rille",
+      "description": "Hadley Rille",
+      "slug": "HadleyRille"
+    }
+  },
+  {
+    "model": "relecloud.destination",
+    "pk": 8,
+    "fields": {
+      "name": "Descartes Highlands",
+      "description": "Descartes Highlands",
+      "slug": "DescartesHighlands"
+    }
+  },
+  {
+    "model": "relecloud.destination",
+    "pk": 9,
+    "fields": {
+      "name": "Taurus-L ittrow",
+      "description": "Taurus-L ittrow",
+      "slug": "Taurus-Littrow"
+    }
+  },
+  {
+    "model": "relecloud.cruise",
+    "pk": 1,
+    "fields": {
+      "name": "Lap around Mars",
+      "description": "This is a Lap around Mars where you will see some beatifull places of the space",
+      "destinations": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "relecloud.cruise",
+    "pk": 2,
+    "fields": {
+      "name": "Test",
+      "description": "This is a test.",
+      "destinations": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "relecloud.purchase",
+    "pk": 1,
+    "fields": {
+      "user": 9,
+      "purchase_type": "destination",
+      "destination": 2,
+      "cruise": null,
+      "purchase_date": "2025-12-07T15:31:56.626Z"
+    }
+  },
+  {
+    "model": "relecloud.purchase",
+    "pk": 2,
+    "fields": {
+      "user": 9,
+      "purchase_type": "destination",
+      "destination": 3,
+      "cruise": null,
+      "purchase_date": "2025-12-07T15:31:56.629Z"
+    }
+  },
+  {
+    "model": "relecloud.purchase",
+    "pk": 3,
+    "fields": {
+      "user": 9,
+      "purchase_type": "destination",
+      "destination": 4,
+      "cruise": null,
+      "purchase_date": "2025-12-07T15:31:56.630Z"
+    }
+  },
+  {
+    "model": "relecloud.purchase",
+    "pk": 4,
+    "fields": {
+      "user": 9,
+      "purchase_type": "cruise",
+      "destination": null,
+      "cruise": 1,
+      "purchase_date": "2025-12-07T15:31:56.634Z"
+    }
+  },
+  {
+    "model": "relecloud.purchase",
+    "pk": 5,
+    "fields": {
+      "user": 9,
+      "purchase_type": "cruise",
+      "destination": null,
+      "cruise": 2,
+      "purchase_date": "2025-12-07T15:31:56.636Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 1,
+    "fields": {
+      "user": 9,
+      "destination": 2,
+      "cruise": null,
+      "rating": 5,
+      "comment": "Amazing destination! Highly recommended.",
+      "created_at": "2025-12-07T15:31:56.643Z",
+      "updated_at": "2025-12-07T15:31:56.643Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 2,
+    "fields": {
+      "user": 9,
+      "destination": 3,
+      "cruise": null,
+      "rating": 4,
+      "comment": "Great experience, would visit again.",
+      "created_at": "2025-12-07T15:31:56.646Z",
+      "updated_at": "2025-12-07T15:31:56.646Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 3,
+    "fields": {
+      "user": 9,
+      "destination": 4,
+      "cruise": null,
+      "rating": 5,
+      "comment": "Absolutely stunning views and great service.",
+      "created_at": "2025-12-07T15:31:56.648Z",
+      "updated_at": "2025-12-07T15:31:56.648Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 4,
+    "fields": {
+      "user": 9,
+      "destination": null,
+      "cruise": 1,
+      "rating": 5,
+      "comment": "Perfect cruise experience! Exceeded expectations.",
+      "created_at": "2025-12-07T15:31:56.653Z",
+      "updated_at": "2025-12-07T15:31:56.653Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 5,
+    "fields": {
+      "user": 9,
+      "destination": null,
+      "cruise": 2,
+      "rating": 4,
+      "comment": "Very enjoyable cruise with excellent staff.",
+      "created_at": "2025-12-07T15:31:56.655Z",
+      "updated_at": "2025-12-07T15:31:56.655Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 9,
+    "fields": {
+      "user": 10,
+      "destination": 3,
+      "cruise": null,
+      "rating": 1,
+      "comment": "fue un viaje horroso",
+      "created_at": "2025-12-07T15:59:24.810Z",
+      "updated_at": "2025-12-07T15:59:24.810Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 11,
+    "fields": {
+      "user": 10,
+      "destination": 2,
+      "cruise": null,
+      "rating": 3,
+      "comment": "Fue un viaje de muchas emociones, tanto positivas como negativas",
+      "created_at": "2025-12-07T16:00:05.610Z",
+      "updated_at": "2025-12-07T16:00:05.610Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 12,
+    "fields": {
+      "user": 10,
+      "destination": 4,
+      "cruise": null,
+      "rating": 5,
+      "comment": "Fue un viaje que necesit√°bamos. Muchas gracias",
+      "created_at": "2025-12-07T16:00:36.809Z",
+      "updated_at": "2025-12-07T16:00:36.809Z"
+    }
+  },
+  {
+    "model": "relecloud.review",
+    "pk": 13,
+    "fields": {
+      "user": 8,
+      "destination": 9,
+      "cruise": null,
+      "rating": 5,
+      "comment": "Esto es una opinion chulisima",
+      "created_at": "2025-12-11T10:19:31.941Z",
+      "updated_at": "2025-12-11T10:19:31.941Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$bOQykUbtmaPxdfjEPZFAz5$AgXmCkdswx7Co5jC16/vqrkX9BZ0rWsoT4bH2SIDQv4=",
+      "last_login": "2025-09-22T14:03:03.578Z",
+      "is_superuser": true,
+      "username": "Antonio",
+      "first_name": "",
+      "last_name": "",
+      "email": "test1@test.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-09-22T13:40:16.754Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$nRI7lueESbxJm2UuPJ8PIQ$cSrWThunTRRCNLug7ZBAstQYiWcE2mIDPK2ccTDHO1M=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "geektrainer",
+      "first_name": "",
+      "last_name": "",
+      "email": "geektrainer@adventure-works.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-22T13:51:28Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$8LcnqD0lo02UYW0ZTsNhUF$W3KKJEVtxBHzRQtLIitlYFLoWtp6UWG+J6VW+VQKkfQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "Staff1",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-09-22T13:59:48Z",
+      "groups": [
+        1
+      ],
+      "user_permissions": [
+        29,
+        32
+      ]
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$Gl9l13Lg0bqC2TQrB34A93$b5xDeyswtoPUBbci4zyT//IPWTSl+7SK9DssTn9iiXI=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "antoniogallego",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-09-30T13:52:33.140Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$gC8sKapfUK73hw1NlkmGn7$0zmSsaawLHWu6CBoxB6xTFX2bymrTdr3U/E1VYwCQFI=",
+      "last_login": "2025-12-11T10:19:09.523Z",
+      "is_superuser": true,
+      "username": "usuarioPrueba",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-12-06T12:04:18.826Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$BS2CUsfflYNmMCk3CYYjfS$LErZdkj1LTRXGgAmznk9lO/cG6u/4wPhM3vQ74dpKqE=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "testuser",
+      "first_name": "",
+      "last_name": "",
+      "email": "test@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-12-07T15:31:56.481Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$MmauSso4AINgVSBoo6Vwjz$5v37vVFiMp3pFxtaxOXxE8pcITElnUig3v1WYUjzfAA=",
+      "last_login": "2025-12-07T15:40:11.240Z",
+      "is_superuser": false,
+      "username": "usuarioNormal",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-12-07T15:37:10Z",
+      "groups": [],
+      "user_permissions": [
+        41,
+        42,
+        43,
+        44,
+        37
+      ]
+    }
   }
-},
-{
-  "model": "relecloud.destination",
-  "pk": 3,
-  "fields": {
-    "name": "Hygea",
-    "description": "Hygea",
-    "slug": "Hygea"
-  }
-},
-{
-  "model": "relecloud.destination",
-  "pk": 4,
-  "fields": {
-    "name": "Sea of tranquility",
-    "description": "Sea of tranquility",
-    "slug": "Seaoftranquility"
-  }
-},
-{
-  "model": "relecloud.destination",
-  "pk": 5,
-  "fields": {
-    "name": "Ocean of storms",
-    "description": "Ocean of storms",
-    "slug": "Oceanofstorms"
-  }
-},
-{
-  "model": "relecloud.destination",
-  "pk": 6,
-  "fields": {
-    "name": "Fra Mauro",
-    "description": "Fra Mauro",
-    "slug": "FraMauro"
-  }
-},
-{
-  "model": "relecloud.destination",
-  "pk": 7,
-  "fields": {
-    "name": "Hadley Rille",
-    "description": "Hadley Rille",
-    "slug": "HadleyRille"
-  }
-},
-{
-  "model": "relecloud.destination",
-  "pk": 8,
-  "fields": {
-    "name": "Descartes Highlands",
-    "description": "Descartes Highlands",
-    "slug": "DescartesHighlands"
-  }
-},
-{
-  "model": "relecloud.destination",
-  "pk": 9,
-  "fields": {
-    "name": "Taurus-L ittrow",
-    "description": "Taurus-L ittrow",
-    "slug": "Taurus-Littrow"
-  }
-},
-{
-  "model": "relecloud.cruise",
-  "pk": 1,
-  "fields": {
-    "name": "Lap around Mars",
-    "description": "This is a Lap around Mars where you will see some beatifull places of the space",
-    "destinations": [
-      4
-    ]
-  }
-},
-{
-  "model": "relecloud.cruise",
-  "pk": 2,
-  "fields": {
-    "name": "Test",
-    "description": "This is a test.",
-    "destinations": [
-      5
-    ]
-  }
-},
-{
-  "model": "relecloud.purchase",
-  "pk": 1,
-  "fields": {
-    "user": 9,
-    "purchase_type": "destination",
-    "destination": 2,
-    "cruise": null,
-    "purchase_date": "2025-12-07T15:31:56.626Z"
-  }
-},
-{
-  "model": "relecloud.purchase",
-  "pk": 2,
-  "fields": {
-    "user": 9,
-    "purchase_type": "destination",
-    "destination": 3,
-    "cruise": null,
-    "purchase_date": "2025-12-07T15:31:56.629Z"
-  }
-},
-{
-  "model": "relecloud.purchase",
-  "pk": 3,
-  "fields": {
-    "user": 9,
-    "purchase_type": "destination",
-    "destination": 4,
-    "cruise": null,
-    "purchase_date": "2025-12-07T15:31:56.630Z"
-  }
-},
-{
-  "model": "relecloud.purchase",
-  "pk": 4,
-  "fields": {
-    "user": 9,
-    "purchase_type": "cruise",
-    "destination": null,
-    "cruise": 1,
-    "purchase_date": "2025-12-07T15:31:56.634Z"
-  }
-},
-{
-  "model": "relecloud.purchase",
-  "pk": 5,
-  "fields": {
-    "user": 9,
-    "purchase_type": "cruise",
-    "destination": null,
-    "cruise": 2,
-    "purchase_date": "2025-12-07T15:31:56.636Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 1,
-  "fields": {
-    "user": 9,
-    "destination": 2,
-    "cruise": null,
-    "rating": 5,
-    "comment": "Amazing destination! Highly recommended.",
-    "created_at": "2025-12-07T15:31:56.643Z",
-    "updated_at": "2025-12-07T15:31:56.643Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 2,
-  "fields": {
-    "user": 9,
-    "destination": 3,
-    "cruise": null,
-    "rating": 4,
-    "comment": "Great experience, would visit again.",
-    "created_at": "2025-12-07T15:31:56.646Z",
-    "updated_at": "2025-12-07T15:31:56.646Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 3,
-  "fields": {
-    "user": 9,
-    "destination": 4,
-    "cruise": null,
-    "rating": 5,
-    "comment": "Absolutely stunning views and great service.",
-    "created_at": "2025-12-07T15:31:56.648Z",
-    "updated_at": "2025-12-07T15:31:56.648Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 4,
-  "fields": {
-    "user": 9,
-    "destination": null,
-    "cruise": 1,
-    "rating": 5,
-    "comment": "Perfect cruise experience! Exceeded expectations.",
-    "created_at": "2025-12-07T15:31:56.653Z",
-    "updated_at": "2025-12-07T15:31:56.653Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 5,
-  "fields": {
-    "user": 9,
-    "destination": null,
-    "cruise": 2,
-    "rating": 4,
-    "comment": "Very enjoyable cruise with excellent staff.",
-    "created_at": "2025-12-07T15:31:56.655Z",
-    "updated_at": "2025-12-07T15:31:56.655Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 9,
-  "fields": {
-    "user": 10,
-    "destination": 3,
-    "cruise": null,
-    "rating": 1,
-    "comment": "fue un viaje horroso",
-    "created_at": "2025-12-07T15:59:24.810Z",
-    "updated_at": "2025-12-07T15:59:24.810Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 11,
-  "fields": {
-    "user": 10,
-    "destination": 2,
-    "cruise": null,
-    "rating": 3,
-    "comment": "Fue un viaje de muchas emociones, tanto positivas como negativas",
-    "created_at": "2025-12-07T16:00:05.610Z",
-    "updated_at": "2025-12-07T16:00:05.610Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 12,
-  "fields": {
-    "user": 10,
-    "destination": 4,
-    "cruise": null,
-    "rating": 5,
-    "comment": "Fue un viaje que necesit·bamos. Muchas gracias",
-    "created_at": "2025-12-07T16:00:36.809Z",
-    "updated_at": "2025-12-07T16:00:36.809Z"
-  }
-},
-{
-  "model": "relecloud.review",
-  "pk": 13,
-  "fields": {
-    "user": 8,
-    "destination": 9,
-    "cruise": null,
-    "rating": 5,
-    "comment": "Esto es una opinion chulisima",
-    "created_at": "2025-12-11T10:19:31.941Z",
-    "updated_at": "2025-12-11T10:19:31.941Z"
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$bOQykUbtmaPxdfjEPZFAz5$AgXmCkdswx7Co5jC16/vqrkX9BZ0rWsoT4bH2SIDQv4=",
-    "last_login": "2025-09-22T14:03:03.578Z",
-    "is_superuser": true,
-    "username": "Antonio",
-    "first_name": "",
-    "last_name": "",
-    "email": "test1@test.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2025-09-22T13:40:16.754Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 2,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$nRI7lueESbxJm2UuPJ8PIQ$cSrWThunTRRCNLug7ZBAstQYiWcE2mIDPK2ccTDHO1M=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "geektrainer",
-    "first_name": "",
-    "last_name": "",
-    "email": "geektrainer@adventure-works.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2025-09-22T13:51:28Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 6,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$8LcnqD0lo02UYW0ZTsNhUF$W3KKJEVtxBHzRQtLIitlYFLoWtp6UWG+J6VW+VQKkfQ=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "Staff1",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2025-09-22T13:59:48Z",
-    "groups": [
-      1
-    ],
-    "user_permissions": [
-      29,
-      32
-    ]
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 7,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$Gl9l13Lg0bqC2TQrB34A93$b5xDeyswtoPUBbci4zyT//IPWTSl+7SK9DssTn9iiXI=",
-    "last_login": null,
-    "is_superuser": true,
-    "username": "antoniogallego",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2025-09-30T13:52:33.140Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 8,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$gC8sKapfUK73hw1NlkmGn7$0zmSsaawLHWu6CBoxB6xTFX2bymrTdr3U/E1VYwCQFI=",
-    "last_login": "2025-12-11T10:19:09.523Z",
-    "is_superuser": true,
-    "username": "usuarioPrueba",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2025-12-06T12:04:18.826Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 9,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$BS2CUsfflYNmMCk3CYYjfS$LErZdkj1LTRXGgAmznk9lO/cG6u/4wPhM3vQ74dpKqE=",
-    "last_login": null,
-    "is_superuser": false,
-    "username": "testuser",
-    "first_name": "",
-    "last_name": "",
-    "email": "test@example.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2025-12-07T15:31:56.481Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 10,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$MmauSso4AINgVSBoo6Vwjz$5v37vVFiMp3pFxtaxOXxE8pcITElnUig3v1WYUjzfAA=",
-    "last_login": "2025-12-07T15:40:11.240Z",
-    "is_superuser": false,
-    "username": "usuarioNormal",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2025-12-07T15:37:10Z",
-    "groups": [],
-    "user_permissions": [
-      41,
-      42,
-      43,
-      44,
-      37
-    ]
-  }
-}
 ]
