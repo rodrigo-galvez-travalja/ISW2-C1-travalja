@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,20 +21,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-rg3vui0yj4w%at26dm7sk&b#3%($y1wb__+l$zk&+h^7g8dtkq"
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-rg3vui0yj4w%at26dm7sk&b#3%($y1wb__+l$zk&+h^7g8dtkq')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Cambiado a True para desarrollo
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = [
-    'relecloudmaster3-e4fcbqb0a8augrd2.francecentral-01.azurewebsites.net',
-    'localhost',
-    '127.0.0.1',
-]
+# Leer ALLOWED_HOSTS de variable de entorno o usar valores por defecto
+allowed_hosts_env = os.environ.get('ALLOWED_HOSTS', '')
+if allowed_hosts_env:
+    ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_env.split(',') if host.strip()]
+else:
+    ALLOWED_HOSTS = [
+        'relecloudmaster4-gfc3b4b7eu6gvhb.francecentral-01.azurewebsites.net',
+        'localhost',
+        '127.0.0.1',
+    ]
+
 # Orígenes permitidos para verificar CSRF (con esquema https://)
 CSRF_TRUSTED_ORIGINS = [
-    "https://relecloudmaster3-e4fcbqb0a8augrd2.francecentral-01.azurewebsites.net",
-    "https://*.azurewebsites.net",  # opcional, comodín para otros slots
+    "https://relecloudmaster4-gfc3b4b7eu6gvhb.francecentral-01.azurewebsites.net",
+    "https://*.azurewebsites.net",
 ]
 
 # Si hay proxy/terminación SSL en Azure
