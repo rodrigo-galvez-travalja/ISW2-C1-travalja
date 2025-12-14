@@ -38,7 +38,7 @@ steps:
     resourceGroupName: 'appsvc_linux_francecentral'
     package: '$(System.DefaultWorkingDirectory)/Django'
     runtimeStack: 'PYTHON|3.11'
-    startUpCommand: 'gunicorn --bind=0.0.0.0 --timeout 600 project.wsgi'
+    startUpCommand: 'bash startup.sh'
   env:
     SCM_DO_BUILD_DURING_DEPLOYMENT: true
     ENABLE_ORYX_BUILD: true
